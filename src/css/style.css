@@ -31,18 +31,6 @@
   --width-large: 1300px;
 }
 
-[data-theme="dark"] {
-  --primary-color: #ffcd42;
-  --secondary-color: #ffd35c;
-  --bg-primary: #000000;
-  --text-color: #ffffff;
-  --text-color-two: #222222;
-  --bg-secondary: #ffffff;
-  --card-background: #111111;
-  --bg-secondary-two: #f4f4f4;
-  --shadow: 0 2px 10px rgba(95, 95, 95, 0.2);
-}
-
 html {
   font-size: 100%;
   scroll-behavior: smooth;
@@ -352,7 +340,28 @@ body {
   50% { border-color: transparent; }
 }
 
-/* Responsive for education cards */
+/* Card Project & Skill */
+.card.project-card,
+.card.skill-card {
+  min-height: 140px;
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Responsive: Card Project & Skill di mobile */
+@media (max-width: 600px) {
+  .card.project-card,
+  .card.skill-card {
+    min-height: 180px !important;
+    padding: 2.2rem 1rem !important;
+    max-width: 420px !important;
+    width: 95vw !important;
+    margin: 0 auto !important;
+  }
+}
+
 @media (max-width: 900px) {
   .education-cards {
     flex-direction: column;
@@ -438,13 +447,171 @@ body {
 }
 
 @media (max-width: 600px) {
-  .project {
-    display: grid;
-    grid-template-columns: 1fr;
+  .project-container.container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100vw !important;
   }
+  .project {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100vw !important;
+    gap: 1.2rem !important;
+  }
+  .card.project-card {
+    margin: 0 auto !important;
+    width: 95vw !important;
+    min-width: 0 !important;
+    max-width: 420px !important;
+  }
+}
 
-  .header-container .btn {
-    border-radius: 5px;
-    width: 80%;
+/* Modal Project */
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95);}
+  to { opacity: 1; transform: scale(1);}
+}
+.project-modal-content {
+  max-width: 420px;
+  min-height: 320px;
+  padding: 32px 16px;
+}
+.project-modal-content #modal-prev,
+.project-modal-content #modal-next {
+  background: #f4f4f4;
+  border: 2px solid #d3d3d3;
+  font-size: 2.4rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  transition: background 0.2s;
+}
+.project-modal-content #modal-prev:hover,
+.project-modal-content #modal-next:hover {
+  background: #eaeaea;
+}
+.project-modal-content #modal-github {
+  display: inline-block;
+  margin-top: 16px;
+  color: #4a90e2;
+  font-size: 1.35rem;
+  background: #f4f4f4;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+}
+.project-modal-content #modal-github:hover {
+  background: #eaeaea;
+}
+
+/* Screenshot image default */
+#modal-screenshot-img {
+  width: 100%;
+  max-width: 340px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  border: 2px solid #eaeaea;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Modal Skills */
+#skills-modal-list li {
+  padding: 10px 18px;
+  margin: 0;
+  font-size: 1.08rem;
+  color: #333;
+  border-bottom: 1px solid #ececec;
+  transition: background 0.2s;
+}
+#skills-modal-list li:last-child {
+  border-bottom: none;
+}
+#skills-modal-list li:hover {
+  background: #fffae3;
+}
+
+/* Responsive modal project & screenshot image */
+@media (max-width: 600px) {
+  .project-modal-content {
+    max-width: 98vw !important;
+    min-height: 220px !important;
+    padding: 18px 4vw !important;
+  }
+  #modal-screenshot-img {
+    max-width: 90vw !important;
+    height: 140px !important;
+  }
+}
+
+/* Responsive for modal project & modal skills */
+@media (max-width: 900px) {
+  .project-modal-content {
+    max-width: 98vw;
+    padding: 32px 10px;
+    min-height: 320px;
+  }
+  #modal-screenshot-img {
+    max-width: 98vw;
+    height: 180px;
+  }
+  #modal-screenshot-slider {
+    gap: 12px !important;
+  }
+  #skills-modal .modal-content {
+    max-width: 98vw;
+    padding: 24px 8px;
+  }
+}
+
+@media (max-width: 700px) {
+  .project {
+    grid-template-columns: 1fr !important;
+    grid-gap: 1.2rem;
+  }
+  .card.project-card {
+    min-width: 0 !important;
+    width: 98vw !important;
+    font-size: 1rem !important;
+  }
+  .project-modal-content {
+    padding: 18px 2vw;
+  }
+  #modal-screenshot-img {
+    max-width: 90vw;
+    height: 120px;
+  }
+}
+
+@media (max-width: 500px) {
+  .header-container {
+    padding: 0 4vw;
+  }
+  .content-text h2 {
+    font-size: 1.5rem;
+  }
+  .project-modal-content {
+    padding: 8px 1vw;
+    font-size: 1rem;
+  }
+  #modal-screenshot-img {
+    max-width: 98vw;
+    height: 80px;
+  }
+  #skills-modal .modal-content {
+    padding: 8px 2vw;
+    font-size: 1rem;
   }
 }
